@@ -4,7 +4,7 @@ const cors=require("cors");
 app.use(cors());
 
 const dotenv = require("dotenv");
-dotenv.config({ path: __dirname+'.env' });
+dotenv.config({ path: __dirname+'/.env' });
 
 
 const mongoose = require("mongoose");
