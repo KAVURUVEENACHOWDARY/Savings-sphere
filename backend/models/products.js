@@ -21,14 +21,19 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    quantityAvailable:{
+    stock:{
         type: Number,
         required: true,
     },
     imageUrl:{
         type: String,
         required: true,
+    },
+    supplier:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'supplier',
+        required: true,
     }
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Product', productSchema);
