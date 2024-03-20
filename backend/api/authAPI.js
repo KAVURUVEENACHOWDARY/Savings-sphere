@@ -87,4 +87,27 @@ router.post("admin-register", async(req, res) => {
     }
 })
 
+router.post("/supplier-register", async(req, res) => {
+    try{
+        const {email, password, name} = req.body;
+        if(!email || !password || !name){
+            return res.json({message:"please enter all fields"});
+        }
+        const supplier = await SupplierModel.findOne({email:email});
+        if(supplier){
+            return res.json({message:"supplier already exists"});
+        }
+        const newSupplier = new SupplierModel({
+            email,
+            password,
+            name
+        });
+        await newSupplier.save();
+        res.status(200).json({message:"success", user:newSupplier});
+    }catch(err){
+        res.json({message:"error"});
+    }
+})
+
+
 module.exports = router;

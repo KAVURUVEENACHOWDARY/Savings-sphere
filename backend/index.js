@@ -23,7 +23,11 @@ db.once("open",()=>console.log("connected to database"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const authApi = require("./api/authAPI");
+const productApi = require("./api/productAPI");
 
+app.use("/auth",authApi );
+app.use("/product",productApi);
 
 app.all("/*",(req,res)=>{
     return res.status(404).json({message:"page not found"});
