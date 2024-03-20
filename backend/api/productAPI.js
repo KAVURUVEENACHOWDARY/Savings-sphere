@@ -29,4 +29,13 @@ router.post("/add-product/:id",prodUpload, async (req, res) => {
     }
 })
 
+router.get("/get-products", async (req, res) => {
+    try {
+        const products = await ProductModel.find();
+        res.status(200).json(products);
+    } catch (err) {
+        res.json({ message: "error" });
+    }
+})
+
 module.exports = router;
